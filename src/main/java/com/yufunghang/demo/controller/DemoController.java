@@ -1,12 +1,25 @@
 package com.yufunghang.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.yufunghang.demo.service.DemoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/demo")
 public class DemoController
 {
-   @GetMapping("demo")
-   public String demoMethod()
-   { return "Success!"; }
+   private DemoService demoService;
+
+   @Autowired
+   public DemoController(DemoService demoService) {
+      this.demoService = demoService;
+   }
+
+   @PostMapping("/mq")
+   public ResponseEntity<?> demoMethod(@RequestParam String content)
+   {
+      demoService.demoMethod(content);
+      return ResponseEntity.ok(null);
+   }
 }
