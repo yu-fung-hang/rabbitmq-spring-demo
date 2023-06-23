@@ -17,7 +17,7 @@ public class DemoController
    }
 
    @PostMapping("/mq")
-   public ResponseEntity<?> demoMethod(@RequestParam String content)
+   public ResponseEntity<?> demoMethod(@RequestParam("content") String content)
    {
       demoService.demoMethod(content);
       return ResponseEntity.ok(null);

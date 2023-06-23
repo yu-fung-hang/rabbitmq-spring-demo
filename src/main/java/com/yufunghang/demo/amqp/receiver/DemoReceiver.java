@@ -4,6 +4,7 @@ import com.yufunghang.demo.amqp.common.AmqpConst;
 import com.yufunghang.demo.amqp.event.DemoEvent;
 import com.yufunghang.demo.model.DemoMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class DemoReceiver {
     private final List<DemoEvent> events;
 
@@ -40,6 +42,7 @@ public class DemoReceiver {
 
         try {
             event.sthHappened(message);
+            log.info("Handled by receiver...");
         } catch (Exception e) {
             Thread.sleep(1000);
             this.sthHappened(event, message, ++times);
