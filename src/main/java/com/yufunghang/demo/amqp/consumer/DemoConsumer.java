@@ -11,7 +11,9 @@ public class DemoConsumer implements DemoEvent {
     @Override
     public void sthHappened(DemoMessage message) {
         if(message != null) {
-            log.info("The message is being consumed...");
+            log.info("Consumer: consuming a message...");
+            log.info(message.getContent());
+            log.info("Consumer: a message has been consumed");
         }
     }
 }

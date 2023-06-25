@@ -41,8 +41,9 @@ public class DemoReceiver {
         }
 
         try {
+            log.info("Receiver: received a message");
             event.sthHappened(message);
-            log.info("Handled by receiver...");
+            log.info("Receiver: quit");
         } catch (Exception e) {
             Thread.sleep(1000);
             this.sthHappened(event, message, ++times);

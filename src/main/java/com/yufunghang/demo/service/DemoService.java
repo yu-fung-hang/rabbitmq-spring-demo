@@ -16,8 +16,7 @@ public class DemoService {
 
     public void demoMethod(String content) {
         DemoMessage message = new DemoMessage(content);
-        log.info("Going to send a message");
         messageSender.send(new MqMessage(AmqpConst.DEMO_EXCHANGE, AmqpConst.DEMO_ROUTING_KEY, message));
-        log.info("A message was sent");
+        log.info("Service: a message was sent");
     }
 }
